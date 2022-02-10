@@ -1,0 +1,25 @@
+deployment:
+  labels:
+    app.env: "production"
+  podLabels:
+    app.env: "production1"
+
+additionalArguments:
+  - --experimental.plugins.traefik-real-ip.modulename=github.com/soulbalz/traefik-real-ip
+  - --experimental.plugins.traefik-real-ip.version=v1.0.3
+  # options 2
+  - --experimental.plugins.traefik-cf-ip.modulename=github.com/xmd3/traefik-cf-ip
+  - --experimental.plugins.traefik-cf-ip.version=v1.0.0
+
+persistence:
+  enabled: true
+  name: data
+  accessMode: ReadWriteOnce
+  size: 128Mi
+  path: /plugins-storage
+  annotations: {}
+
+
+pilot:
+  enabled: true
+  token: "token"
